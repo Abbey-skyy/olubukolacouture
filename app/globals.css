@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Custom Properties ───────────────────────────────────────────────────────── */
+:root {
+  --ivory:       #F5F0E8;  /* Oatmeal/Cream    — main background         */
+  --ivory-dark:  #EDE8DC;  /* Warm beige       — inputs / borders         */
+  --ebony:       #1E110A;  /* Deep Espresso    — primary text             */
+  --ebony-light: #7A5C48;  /* Warm brown       — secondary text           */
+  --ebony-dark:  #120B06;  /* Near-black espresso — footer / dark areas   */
+  --gold:        #9E7B8C;  /* Soft Mauve       — buttons / active states  */
+  --gold-light:  #B89AA8;  /* Light mauve      — hover states             */
+  --gold-dark:   #7D5D6E;  /* Dark mauve       — deeper accent            */
+  --transition:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── Base Reset ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--ivory);
+  color: var(--ebony);
+  font-family: var(--font-inter), 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--gold);
+  color: #fff;
+}
+
+/* ── Typography ──────────────────────────────────────────────────────────────── */
+h1, h2, h3 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--ebony);
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar              { width: 6px; height: 6px; }
+::-webkit-scrollbar-track        { background: var(--ivory-dark); }
+::-webkit-scrollbar-thumb        { background: var(--gold-dark); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover  { background: var(--gold); }
+
+/* ── Focus ring ──────────────────────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────────── */
+
+/* Primary: soft mauve fill — used for all main CTAs */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--gold);
+  color: #fff;
+  padding: 14px 36px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s var(--transition), transform 0.15s;
+}
+.btn-primary:hover  { background-color: var(--gold-dark); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+/* Secondary: mauve border, espresso text — clean outline on oatmeal */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--ebony);
+  padding: 13px 36px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: background-color 0.2s var(--transition), color 0.2s;
+}
+.btn-secondary:hover { background-color: var(--gold); color: #fff; }
+
+.btn-ghost {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ebony);
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--gold); }
+
+/* ── Form inputs ─────────────────────────────────────────────────────────────── */
+.input-minimal {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--ebony-light);
+  color: var(--ebony);
+  padding: 10px 0;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-minimal::placeholder { color: var(--ebony-light); }
+.input-minimal:focus { border-bottom-color: var(--gold); }
+
+.input-box {
+  background: var(--ivory-dark);
+  border: 1px solid rgba(158, 123, 140, 0.25);
+  color: var(--ebony);
+  padding: 12px 16px;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-box:focus { border-color: var(--gold); }
+
+/* ── Glassmorphism card ──────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(245, 240, 232, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(158, 123, 140, 0.20);
+}
+
+/* ── Product card hover ──────────────────────────────────────────────────────── */
+.product-card .product-image { transition: transform 0.6s var(--transition); }
+.product-card:hover .product-image { transform: scale(1.04); }
+.product-card .quick-add {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Sticky sidebar ──────────────────────────────────────────────────────────── */
+.sticky-sidebar {
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
+/* ── Cookie banner ───────────────────────────────────────────────────────────── */
+.cookie-toast {
+  background: rgba(18, 11, 6, 0.96);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(158, 123, 140, 0.35);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Admin sidebar ───────────────────────────────────────────────────────────── */
+.admin-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.55);
+  transition: color 0.2s, background-color 0.2s;
+  border-left: 2px solid transparent;
+}
+.admin-sidebar-link:hover,
+.admin-sidebar-link.active {
+  color: var(--gold-light);
+  background-color: rgba(158, 123, 140, 0.14);
+  border-left-color: var(--gold);
+}
+
+/* ── Announcement bar animation ──────────────────────────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 18s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ── Page transitions ────────────────────────────────────────────────────────── */
+.page-enter { opacity: 0; transform: translateY(12px); }
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s, transform 0.4s;
+}
