@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Announcement from '@/models/Announcement';
 
+export const dynamic = 'force-dynamic';
+
 const DEFAULTS = {
   messages: [
     'FREE SHIPPING ON ORDERS OVER £150',

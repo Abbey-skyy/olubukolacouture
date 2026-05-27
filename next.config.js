@@ -7,9 +7,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'plus.unsplash.com' },
     ],
   },
-  experimental: {
-    serverComponentsExternalPackages: ['mongoose'],
-  },
+  serverExternalPackages: ['mongoose'],
 };
 
 module.exports = nextConfig;
